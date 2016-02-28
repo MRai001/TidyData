@@ -1,0 +1,103 @@
+
+
+Human Activity Recognition Using Smartphones Dataset
+Version 1.0
+
+========================================================================================
+Objective
+The purpose of this project is to  collect, work with, and clean  data set comprising of 
+test and train data that contain activity - measurements on 30 subjects using smartphones. 
+The goal is to prepare tidy data that can be used for later analysis. 
+=========================================================================================
+
+What the project accomplishes
+=========================================================================================
+1.Merges the training and the test sets to create one data set.
+2. Extracts only the measurements on the mean and standard deviation for each measurement.
+3. Uses descriptive activity names to name the activities in the data set
+4. Appropriately labels the data set with descriptive variable names.
+5. From the data set in step 4, creates a second, independent tidy data set with the
+average of each variable for each activity and each subject.
+
+=========================================================================================
+Final dataset includes
+
+-README.RMD
+-CODEBOOK
+-Tidydataset called avgPersonActivity
+-RScript called Run_Analysis.R
+==========================================================================================
+How to run the script
+
+                Preconditions:- Data.table and Dplyr packages should be installed.
+                  Working directory needs to be changed to match the directory where the
+                  original data sets are downloaded and where the final dataset will be created.
+                  Should have R or Rstudio installed on the machine.
+                Execute the script by selecting Run_Analysis in R or Rstudio              
+                  
+============================================================================================
+
+My approach to solving the assignment
+
+1. Read the train  data files into tables and get the dimension of each of the datafiles.The number of rows and columns helped in aligning the data.
+Here is a sample of the dimensions of train tables
+> dim(dttrainy)
+[1] 7352    1
+dim(dttrainX)
+[1] 7352  561
+> dim(dtsubtrain)
+[1] 7352    1
+
+As the total number of rows were the same in all the 3 tables, made an assumption that the data is aligned and can be combined horizontally with cbind command. Had to make this assumption as there were no common key/keys to join the 3 tables.
+
+
+2. Looked for unique values of subject and y_train files to understand what they represent.
+
+3. Based on the initial analysis of step 1 & 2 and the original README file, it is clear that X_train and X_test files contain measurements data. Activity data corresponding to each of the subject from train and test group is contained in y_train and y_test files respectively.Subject related data is contained in subject_train and subject_test files.
+
+4. After having identified the correct files,activity labels were converted to decriptive labels and stored in a new file called newdesctrainy. 
+
+5. Renamed column name V1 as subject in dttrainy. This step was done because V1 was also present in dttrainX. 
+
+6. Combined the activity and subject data with the measurement data
+
+7. Repeated the steps 1 to 5 for test data files
+
+8. After completion of step 6, two tables got created one for train and one for test each having (561+1+1) 561 columns with different linear acceleration and angular velocity measurements plus one column with activity data and one column having subject information.
+Following is an extract of the code that accomplishes combining tables.
+
+       colcombinetrain<-cbind(dttrainX,newdesctrainy,rnsubtrain)   
+       colcombinetest<-cbind(dttestX,newdesctesty,rnsubtest)
+       
+9. Renamed newdesc...column in colcombinetrain and colcombinetest dataframes each and stored the result in comtrain and comtest dataframes each having 563 variables. There are 7352 observations in comtrain and 2947 observations in comtest.        
+       
+10.Merged both the tables mentioned above vertically to create one table
+ 
+       mergedtesttrain<-rbind(comtrain,comtest)
+       
+  As expected got a table of 563 columns and 10299 rows:
+  
+  dim(mergedtesttrain)
+  [1] 10299   563
+  
+11. Next step was to read all the 561 column names from features.txt into a table. Dataframe named featurestab was created with 561 observations and two variables.
+  
+12. Extracted only the columns that contained mean, Mean, std or STD as column names.
+  
+13. Created a new dataframe out of the merged table that had only the columns extracted in step 14. Name of Dataframe- avgCols containing 86 columns and 10299 observations.
+  
+15. Renamed each of the column of avgCols with descriptive names.
+  
+16. Created another dataframe avgCols2 containing 2 variables (activitylabel and subject) and 10299 observations from mergedtesttrain dataframe
+  
+17. The avgCols and avgCols2 dataframes were combined to create combinedAVG data frame containing 88 variables (columns) and 10299 observations
+  
+18. Ordered the data by grouping the data based on subject and then activitylabel
+  
+19. Finally created the tidy dataset that had the average of each variable for each activity and for each subject.The tidy dataset which is a grouped dataframe,called avgPersAct, has the summarized data with 88 variables and 180 observations.
+
+  
+  
+  
+
+

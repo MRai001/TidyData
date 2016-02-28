@@ -1,0 +1,163 @@
+
+CodeBook
+
+1. The tidy dataset is called -avgPersonActivity. Below is the list of all 88 variables that contain mean or std in their names.
+
+
+
+ [1] "subject"                              "activitylabel"                        "angle(tBodyAccJerkMean),gravityMean)" "angle(tBodyAccMean,gravity)"         
+ [5] "angle(tBodyGyroJerkMean,gravityMean)" "angle(tBodyGyroMean,gravityMean)"     "angle(X,gravityMean)"                 "angle(Y,gravityMean)"                
+ [9] "angle(Z,gravityMean)"                 "fBodyAcc-mean()-X"                    "fBodyAcc-mean()-Y"                    "fBodyAcc-mean()-Z"                   
+[13] "fBodyAcc-meanFreq()-X"                "fBodyAcc-meanFreq()-Y"                "fBodyAcc-meanFreq()-Z"                "fBodyAccJerk-mean()-X"               
+[17] "fBodyAccJerk-mean()-Y"                "fBodyAccJerk-mean()-Z"                "fBodyAccJerk-meanFreq()-X"            "fBodyAccJerk-meanFreq()-Y"           
+[21] "fBodyAccJerk-meanFreq()-Z"            "fBodyAccMag-mean()"                   "fBodyAccMag-meanFreq()"               "fBodyBodyAccJerkMag-mean()"          
+[25] "fBodyBodyAccJerkMag-meanFreq()"       "fBodyBodyGyroJerkMag-mean()"          "fBodyBodyGyroJerkMag-meanFreq()"      "fBodyBodyGyroMag-mean()"             
+[29] "fBodyBodyGyroMag-meanFreq()"          "fBodyGyro-mean()-X"                   "fBodyGyro-mean()-Y"                   "fBodyGyro-mean()-Z"                  
+[33] "fBodyGyro-meanFreq()-X"               "fBodyGyro-meanFreq()-Y"               "fBodyGyro-meanFreq()-Z"               "tBodyAcc-mean()-X"                   
+[37] "tBodyAcc-mean()-Y"                    "tBodyAcc-mean()-Z"                    "tBodyAccJerk-mean()-X"                "tBodyAccJerk-mean()-Y"               
+[41] "tBodyAccJerk-mean()-Z"                "tBodyAccJerkMag-mean()"               "tBodyAccMag-mean()"                   "tBodyGyro-mean()-X"                  
+[45] "tBodyGyro-mean()-Y"                   "tBodyGyro-mean()-Z"                   "tBodyGyroJerk-mean()-X"               "tBodyGyroJerk-mean()-Y"              
+[49] "tBodyGyroJerk-mean()-Z"               "tBodyGyroJerkMag-mean()"              "tBodyGyroMag-mean()"                  "tGravityAcc-mean()-X"                
+[53] "tGravityAcc-mean()-Y"                 "tGravityAcc-mean()-Z"                 "tGravityAccMag-mean()"                "fBodyAcc-std()-X"                    
+[57] "fBodyAcc-std()-Y"                     "fBodyAcc-std()-Z"                     "fBodyAccJerk-std()-X"                 "fBodyAccJerk-std()-Y"                
+[61] "fBodyAccJerk-std()-Z"                 "fBodyAccMag-std()"                    "fBodyBodyAccJerkMag-std()"            "fBodyBodyGyroJerkMag-std()"          
+[65] "fBodyBodyGyroMag-std()"               "fBodyGyro-std()-X"                    "fBodyGyro-std()-Y"                    "fBodyGyro-std()-Z"                   
+[69] "tBodyAcc-std()-X"                     "tBodyAcc-std()-Y"                     "tBodyAcc-std()-Z"                     "tBodyAccJerk-std()-X"                
+[73] "tBodyAccJerk-std()-Y"                 "tBodyAccJerk-std()-Z"                 "tBodyAccJerkMag-std()"                "tBodyAccMag-std()"                   
+[77] "tBodyGyro-std()-X"                    "tBodyGyro-std()-Y"                    "tBodyGyro-std()-Z"                    "tBodyGyroJerk-std()-X"               
+[81] "tBodyGyroJerk-std()-Y"                "tBodyGyroJerk-std()-Z"                "tBodyGyroJerkMag-std()"               "tBodyGyroMag-std()"                  
+[85] "tGravityAcc-std()-X"                  "tGravityAcc-std()-Y"                  "tGravityAcc-std()-Z"                  "tGravityAccMag-std()"                
+
+
+
+
+Variable-subject describes all the subjects that participated in the experiment.
+Variable-activitylabel-described all the activities performed by each of the subjects.
+All the other varaiable represent the measurement averages or standard deviations
+
+
+
+
+2. Below sample shows the variable types. Subject has class interger, activitylabel is factor and the remaining measurement variables are class double:
+
+subject      activitylabel angle(tBodyAccJerkMean),gravityMean) angle(tBodyAccMean,gravity) angle(tBodyGyroJerkMean,gravityMean) angle(tBodyGyroMean,gravityMean) angle(X,gravityMean)
+    (int)             (fctr)                                (dbl)                       (dbl)                                (dbl)                            (dbl)                (dbl)
+
+
+
+3. Below is a sample of the dataset -avgPersonActivity- how data is organized after data was summarized per person per activity for all the measurements
+ 
+
+subject      activitylabel angle(tBodyAccJerkMean),gravityMean) angle(tBodyAccMean,gravity)
+    (int)             (fctr)                                (dbl)                       (dbl)
+1       1             LAYING                           -0.8298188                  -0.9096780
+2       1            SIITING                           -0.9520837                  -0.9187667
+3       1           STANDING                           -0.9826250                  -0.9766373
+4       1            WALKING                           -0.3506753                  -0.5576393
+5       1 WALKING_DOWNSTAIRS                           -0.2641137                  -0.3717925
+6       1    WALKING_UPSTARS                           -0.3191390                  -0.5416978
+
+
+
+4. Before summarization data appeared as follows as can be see in the dataset named ordered:
+
+ angle(tBodyAccJerkMean),gravityMean) angle(tBodyAccMean,gravity)
+1                           -0.8311133                  -0.7131174
+2                           -0.9371170                  -0.9539812
+3                           -0.9776114                  -0.9612347
+4                           -0.9926348                  -0.9612347
+5                           -0.9928265                  -0.9687769
+6                           -0.9958141                  -0.9828841
+  angle(tBodyGyroJerkMean,gravityMean) angle(tBodyGyroMean,gravityMean) angle(X,gravityMean)
+1                           -0.7775618                       -0.1465052          -0.58868376
+2                           -0.9152190                        0.2228423          -0.07936523
+3                           -0.9734010                        0.1352774          -0.18992228
+4                           -0.9820991                        0.2031519          -0.07398114
+5                           -0.9844125                       -0.6850269          -0.88736885
+6                           -0.9881455                       -0.6966825          -0.89469684
+
+
+....
+
+ tGravityAcc-std()-X tGravityAcc-std()-Y tGravityAcc-std()-Z tGravityAccMag-std() activitylabel
+1         -0.13199514           0.8801280         -0.11906637            0.2839455        LAYING
+2         -0.07879312           0.8342956         -0.11001902            0.3475356        LAYING
+3         -0.07537083           0.8137897         -0.10579546            0.1923547        LAYING
+4         -0.07613394           0.8137897         -0.10094779            0.1812747        LAYING
+5         -0.06808514           0.8147333         -0.09961923            0.2284556        LAYING
+6         -0.07348808           0.8201309         -0.09820626            0.3784234        LAYING
+  subject
+1       1
+2       1
+3       1
+4       1
+5       1
+6       1
+
+
+
+
+5. Below show the sample before and after transforming the measurement variables:
+
+Before
+
+  V1          V2         V3         V4         V5         V6         V7         V8         V9
+1 0.2885845 -0.02029417 -0.1329051 -0.9952786 -0.9831106 -0.9135264 -0.9951121 -0.9831846 -0.9235270
+2 0.2784188 -0.01641057 -0.1235202 -0.9982453 -0.9753002 -0.9603220 -0.9988072 -0.9749144 -0.9576862
+3 0.2796531 -0.01946716 -0.1134617 -0.9953796 -0.9671870 -0.9789440 -0.9965199 -0.9636684 -0.9774686
+4 0.2791739 -0.02620065 -0.1232826 -0.9960915 -0.9834027 -0.9906751 -0.9970995 -0.9827498 -0.9893025
+5 0.2766288 -0.01656965 -0.1153619 -0.9981386 -0.9808173 -0.9904816 -0.9983211 -0.9796719 -0.9904411
+6 0.2771988 -0.01009785 -0.1051373 -0.9973350 -0.9904868 -0.9954200 -0.9976274 -0.9902177 -0.9955489
+         V10        V11        V12       V13       V14       V15        V16        V17        V18
+1 -0.9347238 -0.5673781 -0.7444125 0.8529474 0.6858446 0.8142628 -0.9655228 -0.9999446 -0.9998630
+2 -0.9430675 -0.5578513 -0.8184087 0.8493079 0.6858446 0.8226368 -0.9819301 -0.9999913 -0.9997884
+3 -0.9386916 -0.5578513 -0.8184087 0.8436090 0.6824009 0.8393442 -0.9834778 -0.9999691 -0.9996599
+4 -0.9386916 -0.5761589 -0.8297115 0.8436090 0.6824009 0.8378693 -0.9860933 -0.9999755 -0.9997360
+5 -0.9424691 -0.5691738 -0.8247053 0.8490951 0.6832498 0.8378693 -0.9926531 -0.9999906 -0.9998559
+6 -0.9424691 -0.5656839 -0.8227661 0.8490951 0.6955857 0.8459216 -0.9939277 -0.9999855 -0.9998570
+
+After
+
+ angle(tBodyAccJerkMean),gravityMean) angle(tBodyAccMean,gravity)
+1                           -0.9750599                  -0.9915537
+2                           -0.9847146                  -0.9915537
+3                           -0.9847146                  -0.9661929
+4                           -0.9900291                  -0.9816856
+5                           -0.9870285                  -0.9816856
+6                           -0.9870285                  -0.9903605
+  angle(tBodyGyroJerkMean,gravityMean) angle(tBodyGyroMean,gravityMean) angle(X,gravityMean)
+1                           -0.9689591                      0.377311210            0.1340915
+2                           -0.9806831                     -0.458553310           -0.7970135
+3                           -0.9763171                      0.090519474           -0.2446911
+4                           -0.9820599                     -0.572087600           -0.8736179
+5                           -0.9852037                     -0.339596820           -0.7226279
+6                           -0.9858944                     -0.004027766           -0.3231587
+
+
+
+6. Below is a sample before and after transforming activitylabel
+
+Before
+5
+
+5
+
+5
+
+5
+
+5
+
+5
+
+
+
+After
+1 STANDING
+2 STANDING
+3 STANDING
+4 STANDING
+5 STANDING
+6 STANDING
+
+
